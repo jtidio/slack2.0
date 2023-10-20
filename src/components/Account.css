@@ -1,0 +1,6 @@
+.Account{
+    background: green;
+    display: flex;
+    flex-direction: column;
+    
+}
