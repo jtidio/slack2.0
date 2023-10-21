@@ -3,6 +3,7 @@ import SideBar from "./SideBar";
 import Account from "./Account";
 import SearchBar from "./SearchBar";
 import "./DashBoard.css";
+import React from 'react';
 
 
 function Dashboard() {

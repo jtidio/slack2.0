@@ -8,6 +8,7 @@ function SearchBar() {
       <div className="SearchBar">
         <AccessTimeIcon/>
         <input type="text" placeholder="Search Slack "></input>
+        <SearchIcon/>
         <HelpOutlineIcon/>
       </div>
     )
