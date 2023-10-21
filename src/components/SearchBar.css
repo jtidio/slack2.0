@@ -8,3 +8,12 @@
 .SearchBar input {
 	margin: 0 10px;
 }
+
+.SearchBar svg {
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.SearchBar svg:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
