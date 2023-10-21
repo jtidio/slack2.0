@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 function App() {
   return (
-    <div className="App2">
+    <div className="App">
       <BrowserRouter>
           <Routes>
             <Route index path="/" element={<Login></Login>}>
@@ -20,5 +20,3 @@ function App() {
 }
 
 export default App;
-
-// Testbranch blabla
