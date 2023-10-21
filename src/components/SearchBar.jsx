@@ -1,7 +1,6 @@
 import "./SearchBar.css";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import SearchIcon from '@mui/icons-material/Search';
 
 function SearchBar() {
     return (
