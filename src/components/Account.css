@@ -1,6 +1,8 @@
-.Account{
-    background: green;
-    display: flex;
-    flex-direction: column;
-    
+.Account {
+  background: green;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+	padding-top: 10px;
+	justify-content: flex-start;
 }
