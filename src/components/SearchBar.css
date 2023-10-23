@@ -1,8 +1,9 @@
 .SearchBar {
-  background-color: magenta;
+  background-color: #1c1b1c;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #f8f8f8;
 }
 
 .SearchBar input {
