@@ -4,6 +4,7 @@ import Account from "./Account";
 import SearchBar from "./SearchBar";
 import "./DashBoard.css";
 import React from 'react';
+import AddChannel from "./AddChannel";
 
 
 function Dashboard() {
@@ -15,6 +16,7 @@ function Dashboard() {
         <SideBar></SideBar>
         <Chat></Chat>
       </div>
+      {/* <AddChannel></AddChannel> */}
     </div>
   )
 };
