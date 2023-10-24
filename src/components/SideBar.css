@@ -34,8 +34,13 @@
 	display: flex;
 }
 
+.dmName {
+	display: flex;
+}
+
 .addChannel {
 	display: flex;
+	cursor: pointer;
 }
 
 .channelContent {

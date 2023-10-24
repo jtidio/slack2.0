@@ -1,5 +1,102 @@
 .Chat{
-    background: #1a1d21;
-    color: #f8f8f8;
-    border: 1px solid #363638;
+  background: #1a1d21;
+	color: #f8f8f8;
+	border: 1px solid #363638;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.chattitleBar {
+	border: 1px solid #363638;
+	height: 5%;
+}
+
+.chatArea {
+	border: 1px solid #363638;
+	height: 93%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2% 0 0;
+}
+
+.chatDisplay {
+	max-height: 75%;
+	min-height: 40%;
+	height: 75%;
+	width: 95%;
+	position: relative;
+}
+
+.chatInput {
+	border: 1px solid #363638;
+	background: #222529;
+	height: 20%;
+	min-height: 20%;
+	width: 95%;
+	border-radius: 10px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.formattingIcons {
+	display: flex;
+	gap: 20px;
+	padding: 10px;
+}
+
+.formattingIcons svg {
+	padding: 3px;
+	border-radius: 5px;
+}
+
+.formattingIcons svg:hover {
+	background: #3f4245;
+	cursor: pointer;
+}
+
+.titleElements {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 10px;
+}
+
+.separator {
+	color: #3f4245;
+}
+
+.chattextArea {
+	display: flex;
+	padding: 0 3% 0;
+	align-self: center;
+	width: 97%;
+	height: 33%;
+}
+
+.chattextArea textarea {
+	width: 100%;
+	background: #222529;
+	border: none;
+	resize: none;
+	color: #f8f8f8;
+}
+
+.chatFunctions {
+	display: flex;
+	gap: 20px;
+	padding: 10px;
+}
+
+.chatFunctions svg {
+	padding: 3px;
+	border-radius: 5px;
+}
+
+.chatFunctions svg:hover {
+	background: #3f4245;
+	cursor: pointer;
 }
