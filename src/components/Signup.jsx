@@ -3,32 +3,34 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { API_URL } from '../constants/Constants';
 
-function Login() {
+function Signup() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [password_confirmation, setConfirmPassword] = useState();
   const [user, setUser] = useState(
     () => JSON.parse(localStorage.getItem("user") || null)
 );
 
-useEffect(()=>{
-  if(user){
-      localStorage.setItem("user", JSON.stringify(user));
-  }
-}, [user])
+// useEffect(()=>{
+//   if(user){
+//       localStorage.setItem("user", JSON.stringify(user));
+//   }
+// }, [user])
 
-  async function handleLoginForm(event){
+  async function handleSignup(event){
     event.preventDefault();
 
     
     if(!email || !password){
-        return alert("Invalid credentials (email or password)");
+        return alert("Incomplete credentials (email or password)");
     }
     try {
-        const loginCredentials ={
+        const signupCredentials ={
             email,
-            password
+            password,
+            password_confirmation
         }
-        const response = await axios.post(`${API_URL}/auth/sign_in`, loginCredentials);
+        const response = await axios.post(`${API_URL}/auth/`, signupCredentials);
         const {data, headers} = response;
 
         if (data && headers){
@@ -55,13 +57,9 @@ useEffect(()=>{
     }
 }
 
-// function handleLogin(){
-
-// }
-
   return (
-    <form onSubmit={handleLoginForm}>
-      <h1>Login</h1>
+    <form onSubmit={handleSignup}>
+      <h1>Sign Up</h1>
                     <label>Email:</label>
                     <input
                         type="email"
@@ -74,9 +72,15 @@ useEffect(()=>{
                         onChange={(event) => setPassword(event.target.value)}
                     >
                     </input>
-                    <button type="submit">Login</button>
+                    <label>Re-Type Password:</label>
+                    <input
+                        type="text"
+                        onChange={(event) => setConfirmPassword(event.target.value)}
+                    >
+                    </input>
+                    <button type="submit">Sign Up</button>
     </form>
   )
 };
 
-export default Login;
+export default Signup;
