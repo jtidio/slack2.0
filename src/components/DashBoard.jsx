@@ -5,18 +5,23 @@ import SearchBar from "./SearchBar";
 import "./DashBoard.css";
 import React from 'react';
 import AddChannel from "./AddChannel";
+import { useState } from "react";
 
 
 function Dashboard() {
+
+  const [chatTitle, setChatTitle] = useState("Chat Title");
+
+
   return (
     <div className="main">
       <SearchBar></SearchBar>
       <div className="user">
         <Account></Account>
-        <SideBar></SideBar>
-        <Chat></Chat>
+        <SideBar setChatTitle={setChatTitle}></SideBar>
+        <Chat chatTitle={chatTitle}></Chat>
       </div>
-      {/* <AddChannel></AddChannel> */}
+      <AddChannel></AddChannel>
     </div>
   )
 };

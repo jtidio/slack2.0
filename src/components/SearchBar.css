@@ -8,6 +8,12 @@
 
 .SearchBar input {
 	margin: 0 10px;
+  background: #575657;
+  color: #f8f8f8;
+  width: 30%;
+  border-radius: 5px;
+  font-size: 16px;
+  border: 1px solid #363638;
 }
 
 .SearchBar svg {

@@ -3,9 +3,15 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import TagIcon from '@mui/icons-material/Tag';
 import AddIcon from '@mui/icons-material/Add';
 import { useState } from "react";
+import AddChannel from "./AddChannel";
+import Chat from "./Chat";
+import PersonIcon from '@mui/icons-material/Person';
 
-function SideBar() {
+function SideBar({ setChatTitle }) {
  
+  const showChannel = (channelName) => {
+    setChatTitle(channelName);
+  };
 
   function channelAnimation() {
     if(document.getElementById('channelArrow').getAttribute("check") === "false") {
@@ -32,6 +38,9 @@ function SideBar() {
     }
   };
 
+  function showaddChannel() {
+    document.getElementById("addchannelModal").style.display = "flex";
+  };
   
   return (
     <div className="sidebarContainer">
@@ -41,10 +50,13 @@ function SideBar() {
             <ArrowRightIcon></ArrowRightIcon><span>Channels</span>
           </div>
           <div id="showChannel" className="channelContent">
-            <div className="channelName">
-              <TagIcon></TagIcon><span>Test</span>
+            <div className="channelName" onClick={() => showChannel("Avion")}>
+              <TagIcon></TagIcon><span>Avion</span>
             </div>
-            <div className="addChannel">
+            <div className="channelName" onClick={() => showChannel("School")}>
+              <TagIcon></TagIcon><span>School</span>
+            </div>
+            <div id="addchannelButton" className="addChannel" onClick={showaddChannel}>
               <AddIcon></AddIcon><span>Add channels</span>
             </div>
           </div>
@@ -55,11 +67,11 @@ function SideBar() {
             <ArrowRightIcon></ArrowRightIcon><span>Direct messages</span>
           </div>
           <div id="showDm" className="dmContent">
-            <div className="channelName">
-              <TagIcon></TagIcon>Test
+            <div className="dmName">
+              <PersonIcon></PersonIcon>Lance
             </div>
-            <div className="channelName">
-              <TagIcon></TagIcon>Test
+            <div className="dmName">
+            <PersonIcon></PersonIcon>Johnery
             </div>
             <div className="addDm">
               <AddIcon></AddIcon><span>New message</span>
