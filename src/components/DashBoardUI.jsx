@@ -2,13 +2,13 @@ import Chat from "./Chat";
 import SideBar from "./SideBar";
 import Account from "./Account";
 import SearchBar from "./SearchBar";
-import "./DashBoard.css";
+import "./DashBoardUI.css";
 import React from 'react';
 import AddChannel from "./AddChannel";
 import { useState } from "react";
 
 
-function Dashboard() {
+function DashboardUI() {
 
   const [chatTitle, setChatTitle] = useState("Chat Title");
 
@@ -26,4 +26,4 @@ function Dashboard() {
   )
 };
 
-export default Dashboard;
+export default DashboardUI;
