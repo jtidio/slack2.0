@@ -34,6 +34,7 @@ return (
 		<div className="chatArea">
 			<div className="chatDisplay">
 				<span>Chat Area</span>
+				<span>{user}</span>
 			</div>
 			<div className="chatInput">
 				<div className="formattingIcons">

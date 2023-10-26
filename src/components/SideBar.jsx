@@ -2,10 +2,11 @@ import "./SideBar.css";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import TagIcon from '@mui/icons-material/Tag';
 import AddIcon from '@mui/icons-material/Add';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddChannel from "./AddChannel";
 import Chat from "./Chat";
 import PersonIcon from '@mui/icons-material/Person';
+import ChannelService from "../Services/ChannelService";
 
 function SideBar({ setChatTitle }) {
  
@@ -41,7 +42,20 @@ function SideBar({ setChatTitle }) {
   function showaddChannel() {
     document.getElementById("addchannelModal").style.display = "flex";
   };
-  
+  //FUNCTIONAL CODE
+  const [channelList, setChannelList] = useState([]);
+
+  useEffect(() => {
+      // Apply getUsers function from UserService here
+      async function fetchChannels(){
+          const channels = await ChannelService.getChannels(user);
+          setChannelList(channels);
+      }
+      fetchChannels();
+  })
+
+
+
   return (
     <div className="sidebarContainer">
       <div className="sidebarelemContainer">
@@ -58,6 +72,20 @@ function SideBar({ setChatTitle }) {
             </div>
             <div id="addchannelButton" className="addChannel" onClick={showaddChannel}>
               <AddIcon></AddIcon><span>Add channels</span>
+
+              {
+                channelList && 
+                channelList.map((medium) => {
+                    const {id, name} = medium;
+                    return (
+                        <div key={id}>
+                            <p>ID: {id}</p>
+                            <p>Name: {name}</p>
+                        </div>
+                    )
+                })
+            }
+            {!channelList && <div>No Channels</div>}
             </div>
           </div>
         </div>
