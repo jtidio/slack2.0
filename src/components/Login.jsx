@@ -2,6 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { API_URL } from '../constants/Constants';
+import "./Login.css";
+import EmailIcon from '@mui/icons-material/Email';
+import KeyIcon from '@mui/icons-material/Key';
+import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 
 function Login() {
   const [email, setEmail] = useState();
@@ -59,24 +63,39 @@ useEffect(()=>{
 
 // }
 
-  return (
+return (
+  <div className='loginformContainer'>
+    <img 
+    className="loginLogo" src='./assets/slack_icon.png' alt='Logo here'>
+    </img>
     <form onSubmit={handleLoginForm}>
-      <h1>Login</h1>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        onChange={(event) => setEmail(event.target.value)}
-                    >
-                    </input>
-                    <label>Password:</label>
-                    <input
-                        type="text"
-                        onChange={(event) => setPassword(event.target.value)}
-                    >
-                    </input>
-                    <button type="submit">Login</button>
+      <div className='loginInput'>
+        <div className='emailInput'>
+          <EmailIcon></EmailIcon>
+          <input
+            type="email"
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder='Email'
+          >
+          </input>
+        </div>
+        <div className='passwordInput'>
+          <KeyIcon></KeyIcon>
+          <input
+            type="password"
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder='Password'
+          >
+          </input>
+        </div>
+        <button type="submit">Login</button>
+      </div>
     </form>
-  )
+    <div className='createAccount'>
+      <span>Create new account</span><TrendingFlatIcon></TrendingFlatIcon>
+    </div>
+  </div>
+)
 };
 
 export default Login;
