@@ -7,7 +7,7 @@
   flex-direction: column;
   position: relative;
   gap: 100px;
-  background-image: url('https://img.freepik.com/premium-vector/soft-dark-background-shimmering-gradient-cool-tones-purple-blues-azure-backdrop-dark-shades-banners-backgrounds-vector-illustration_589396-294.jpg');
+  background-image: url('https://wallpapersmug.com/large/50e470/gradient-blur.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -93,8 +93,9 @@
   gap: 5px;
   padding: 5px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .createAccount:hover {
-  background: gray;
+  background: #299ec0;
 }

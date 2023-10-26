@@ -19,10 +19,6 @@ import MicIcon from '@mui/icons-material/Mic';
 
 function Chat({ chatTitle }) {
 
-	function strikeThrough() {
-		console.log('Click')
-	}
-
 return (
   <div className="Chat">
     <div className="chattitleBar">
@@ -40,7 +36,7 @@ return (
 				<div className="formattingIcons">
 					<FormatBoldIcon></FormatBoldIcon>
 					<FormatItalicIcon></FormatItalicIcon>
-					<StrikethroughSIcon onClick={strikeThrough}></StrikethroughSIcon>
+					<StrikethroughSIcon></StrikethroughSIcon>
 					<span className="separator">|</span>
 					<AddLinkIcon></AddLinkIcon>
 					<span className="separator">|</span>
