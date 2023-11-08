@@ -1,7 +1,7 @@
 import { API_URL } from '../constants/Constants';
 import axios from 'axios';
 
-const ChannelService = {
+const GetChannelDetailService = {
     // Object method for getting users
     getChannels: async function(user) {
         try{
@@ -27,4 +27,4 @@ const ChannelService = {
 
 }
 
-export default ChannelService;
+export default GetChannelDetailService;

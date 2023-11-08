@@ -2,11 +2,18 @@ import React from 'react';
 import "./AddChannel.css";
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import CreateChannelService from "../Services/ChannelService";
 
 function AddChannel({}) {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    async function newChannel(){
+      const newChannel = await CreateChannelService.createChannels(user);
+      setChannelList(newChannel);
+    }
+    newChannel();
   }
 
   function closeModal() {

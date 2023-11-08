@@ -6,19 +6,21 @@ import "./Login.css";
 import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
+import { useData } from '../Context/StoredData';
 
 function Login() {
+  const {handleHeaders, handleLogin} = useData();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [user, setUser] = useState(
-    () => JSON.parse(localStorage.getItem("user") || null)
-);
+//   const [user, setUser] = useState(
+//     () => JSON.parse(localStorage.getItem("user") || null)
+// );
 
-useEffect(()=>{
-  if(user){
-      localStorage.setItem("user", JSON.stringify(user));
-  }
-}, [user])
+// useEffect(()=>{
+//   if(user){
+//       localStorage.setItem("user", JSON.stringify(user));
+//   }
+// }, [user])
 
   async function handleLoginForm(event){
     event.preventDefault();
@@ -33,23 +35,24 @@ useEffect(()=>{
             password
         }
         const response = await axios.post(`${API_URL}/auth/sign_in`, loginCredentials);
-        const {data, headers} = response;
+        // const {data, headers} = response;
+        handleLogin(response.data);
+        handleHeaders(response.headers);
+        console.log("success")
 
-        if (data && headers){
-            const accessToken = headers["access-token"];
-            const expiry = headers["expiry"];
-            const client = headers["client"];
-            const uid = headers["uid"];
-            setUser({
-                accessToken,
-                expiry,
-                client,
-                uid,
-                id: data.data.id
-            })
-
-            console.log("success");
-        }
+        // if (data && headers){
+        //     const accessToken = headers["access-token"];
+        //     const expiry = headers["expiry"];
+        //     const client = headers["client"];
+        //     const uid = headers["uid"];
+        //     setUser({
+        //         accessToken,
+        //         expiry,
+        //         client,
+        //         uid,
+        //         id: data.data.id
+        //     })
+        // }
 
     } catch (error){
         if(error.response.data.errors){
