@@ -45,14 +45,14 @@ function SideBar({ setChatTitle }) {
   //FUNCTIONAL CODE
   const [channelList, setChannelList] = useState([]);
 
-  useEffect(() => {
-      // Apply getUsers function from UserService here
-      async function fetchChannels(){
-          const channels = await ChannelService.getChannels(user);
-          setChannelList(channels);
-      }
-      fetchChannels();
-  })
+  // useEffect(() => {
+  //     // Apply getUsers function from UserService here
+  //     async function fetchChannels(){
+  //         const channels = await ChannelService.getChannels(user);
+  //         setChannelList(channels);
+  //     }
+  //     fetchChannels();
+  // })
 
 
 

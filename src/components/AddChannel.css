@@ -15,6 +15,20 @@
 .addchannelForm {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.addchannelForm button {
+  width: 85%;
+  background: #edb32a;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
 }
 
 .closeButton {

@@ -1,13 +1,13 @@
-.Account {
+.accountContainer {
   background-color: #1c1b1c;
   display: flex;
   flex-direction: column;
   align-items: center;
-	justify-content: flex-start;
+	justify-content: space-between;
   color: #f8f8f8;
 }
 
-.Account svg {
+/* .Account svg {
   margin: 10px 0 0;
   padding: 5px;
   width: 30px;
@@ -17,5 +17,38 @@
 }
 
 .Account svg:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+} */
+
+.accountIcons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.accountIcons svg {
+  margin: 10px 0 0;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.accountIcons svg:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.accountProfile svg {
+  margin: 0 0 10px;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.accountProfile svg:hover {
   background-color: rgba(255, 255, 255, 0.7);
 }

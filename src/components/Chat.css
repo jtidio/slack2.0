@@ -83,6 +83,12 @@
 	border: none;
 	resize: none;
 	color: #f8f8f8;
+	font-size: 18px;
+}
+
+.chattextArea textarea:focus {
+	border: none;
+	outline: none;
 }
 
 .chatFunctions {
