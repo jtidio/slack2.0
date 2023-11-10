@@ -6,6 +6,7 @@ import "./DashBoardUI.css";
 import React from 'react';
 import AddChannel from "./AddChannel";
 import { useState } from "react";
+import Profile from "./Profile";
 
 
 function DashboardUI() {
@@ -22,6 +23,7 @@ function DashboardUI() {
         <Chat chatTitle={chatTitle}></Chat>
       </div>
       <AddChannel></AddChannel>
+      {/* <Profile></Profile> */}
     </div>
   )
 };

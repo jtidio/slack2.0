@@ -17,21 +17,23 @@ function App() {
 
   return (
     <div className="App">
-      {/* <BrowserRouter>
-          <Routes>
-            <Route index path="/" element={<Login></Login>}>
-            </Route>
-            <Route path="signup" element={<Signup></Signup>}>
-            </Route>
-            <Route path="dashboard" element={<DashboardUI></DashboardUI>}>
-            </Route>
-          </Routes>
-      </BrowserRouter> */}
       <StoredData>
-      <Login></Login>
+        <BrowserRouter>
+            <Routes>
+              <Route index path="/" element={<Login></Login>}>
+              </Route>
+              <Route path="signup" element={<Signup></Signup>}>
+              </Route>
+              <Route path="dashboard" element={<DashboardUI></DashboardUI>}>
+              </Route>
+            </Routes>
+        </BrowserRouter>
+      </StoredData>
+      {/* <StoredData> */}
+      {/* <Login></Login> */}
             {/* {!isLoggedIn && <Login></Login>}
             {isLoggedIn && <DashboardUI></DashboardUI>} */}
-      </StoredData>
+      {/* </StoredData> */}
     </div>
   );
 }
