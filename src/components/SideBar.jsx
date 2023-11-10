@@ -7,7 +7,8 @@ import AddChannel from "./AddChannel";
 import Chat from "./Chat";
 import PersonIcon from '@mui/icons-material/Person';
 import ChannelService from "../Services/ChannelService";
-import { useData } from "../Context/StoredData";
+import { useData } from '../Context/StoredData';
+
 
 function SideBar({ setChatTitle }) {
  
@@ -45,28 +46,18 @@ function SideBar({ setChatTitle }) {
   };
   //FUNCTIONAL CODE
   const [channelList, setChannelList] = useState([]);
-  const [user, setUser] = useState(
-    () => JSON.parse(localStorage.getItem("user") || null)
-  );
-  
+
+  const {userHeaders} = useData();
+
+
   useEffect(() => {
       // Apply getUsers function from UserService here
       async function fetchChannels(){
-          const channels = await ChannelService.getChannels(user);
-          console.log(channels);
+          const channels = await ChannelService.getChannels(userHeaders);
           setChannelList(channels);
       }
       fetchChannels();
-  }, [user])
-
-  // useEffect(() => {
-  //     // Apply getUsers function from UserService here
-  //     async function fetchChannels(){
-  //         const channels = await ChannelService.getChannels(user);
-  //         setChannelList(channels);
-  //     }
-  //     fetchChannels();
-  // })
+  })
 
   return (
     <div className="sidebarContainer">
@@ -81,11 +72,15 @@ function SideBar({ setChatTitle }) {
             </div>
             <div className="channelName" onClick={() => showChannel("School")}>
               <TagIcon></TagIcon><span>School</span>
+
+            </div>
             </div> */}
+
             {
                 channelList && 
                 channelList.map((channel) => {
                     return (
+
                       <div key={channel.id} className="channelName" onClick={() => showChannel(channel.name)}>
                         <TagIcon></TagIcon><span>{ channel.name }</span>
                       </div>
@@ -97,6 +92,10 @@ function SideBar({ setChatTitle }) {
 
               
             {!channelList && <div>No Channels</div>}
+            <div id="addchannelButton" className="addChannel" onClick={showaddChannel}>
+              <AddIcon></AddIcon><span>Add channels</span>
+
+              
             </div>
           </div>
         </div>

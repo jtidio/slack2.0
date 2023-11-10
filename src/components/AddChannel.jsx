@@ -3,17 +3,21 @@ import "./AddChannel.css";
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import CreateChannelService from "../Services/ChannelService";
+import { useData } from '../Context/StoredData';
+
 
 function AddChannel({}) {
+  const {userHeaders} = useData();
+  const [channelList, setChannelList] = useState([]);
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    // async function newChannel(){
-    //   const newChannel = await CreateChannelService.createChannels(user);
-    //   setChannelList(newChannel);
-    // }
-    // newChannel();
+    async function newChannel(){
+      const newChannel = await CreateChannelService.createChannel(userHeaders);
+      setChannelList(newChannel);
+    }
+    newChannel();
   }
 
   function closeModal() {
@@ -37,4 +41,4 @@ function AddChannel({}) {
   )
 }
 
-export default AddChannel;
+export default AddChannel

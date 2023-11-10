@@ -16,6 +16,7 @@ function App() {
   // const {isLoggedIn} = useData();
 
   return (
+    <StoredData>
     <div className="App">
       <StoredData>
         <BrowserRouter>
@@ -29,12 +30,8 @@ function App() {
             </Routes>
         </BrowserRouter>
       </StoredData>
-      {/* <StoredData> */}
-      {/* <Login></Login> */}
-            {/* {!isLoggedIn && <Login></Login>}
-            {isLoggedIn && <DashboardUI></DashboardUI>} */}
-      {/* </StoredData> */}
     </div>
+    </StoredData>
   );
 }
 

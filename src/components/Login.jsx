@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 import { API_URL } from '../constants/Constants';
 import "./Login.css";
 import EmailIcon from '@mui/icons-material/Email';
@@ -15,9 +16,11 @@ function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
-  const [user, setUser] = useState(
-    () => JSON.parse(localStorage.getItem("user") || null)
-  );
+
+//   const [user, setUser] = useState(
+//     () => JSON.parse(localStorage.getItem("user") || null)
+// );
+
 
   useEffect(()=>{
     console.log(1, user);
@@ -59,10 +62,13 @@ function Login() {
         handleLogin(response.data);
         handleHeaders(response.headers);
         console.log("success")
+        navigate("/dashboard")
 
     } catch (error){
         if(error.response.data.errors){
-            return alert("Invalid credentials. Please enter an existing account");
+
+            return alert("Invalid credentials. Please reenter.");
+
         }
 
     }
