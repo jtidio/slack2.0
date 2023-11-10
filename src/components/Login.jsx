@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 import { API_URL } from '../constants/Constants';
 import "./Login.css";
 import EmailIcon from '@mui/icons-material/Email';
@@ -12,6 +13,7 @@ function Login() {
   const {handleHeaders, handleLogin} = useData();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const navigate = useNavigate();
 //   const [user, setUser] = useState(
 //     () => JSON.parse(localStorage.getItem("user") || null)
 // );
@@ -39,6 +41,7 @@ function Login() {
         handleLogin(response.data);
         handleHeaders(response.headers);
         console.log("success")
+        navigate("/dashboard")
 
         // if (data && headers){
         //     const accessToken = headers["access-token"];
@@ -56,7 +59,7 @@ function Login() {
 
     } catch (error){
         if(error.response.data.errors){
-            return alert("Invalid credentials this is the other");
+            return alert("Invalid credentials. Please reenter.");
         }
 
     }

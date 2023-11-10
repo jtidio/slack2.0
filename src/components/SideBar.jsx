@@ -7,6 +7,7 @@ import AddChannel from "./AddChannel";
 import Chat from "./Chat";
 import PersonIcon from '@mui/icons-material/Person';
 import ChannelService from "../Services/ChannelService";
+import { useData } from '../Context/StoredData';
 
 function SideBar({ setChatTitle }) {
  
@@ -44,15 +45,16 @@ function SideBar({ setChatTitle }) {
   };
   //FUNCTIONAL CODE
   const [channelList, setChannelList] = useState([]);
+  const {userHeaders} = useData();
 
-  // useEffect(() => {
-  //     // Apply getUsers function from UserService here
-  //     async function fetchChannels(){
-  //         const channels = await ChannelService.getChannels(user);
-  //         setChannelList(channels);
-  //     }
-  //     fetchChannels();
-  // })
+  useEffect(() => {
+      // Apply getUsers function from UserService here
+      async function fetchChannels(){
+          const channels = await ChannelService.getChannels(userHeaders);
+          setChannelList(channels);
+      }
+      fetchChannels();
+  })
 
 
 
@@ -70,22 +72,23 @@ function SideBar({ setChatTitle }) {
             <div className="channelName" onClick={() => showChannel("School")}>
               <TagIcon></TagIcon><span>School</span>
             </div>
-            <div id="addchannelButton" className="addChannel" onClick={showaddChannel}>
-              <AddIcon></AddIcon><span>Add channels</span>
-
-              {
+            {
                 channelList && 
                 channelList.map((medium) => {
                     const {id, name} = medium;
                     return (
                         <div key={id}>
-                            <p>ID: {id}</p>
-                            <p>Name: {name}</p>
+                            <TagIcon></TagIcon><span>ID: {id}</span>
+                            <TagIcon></TagIcon><span>Name: {name}</span>
                         </div>
                     )
                 })
             }
             {!channelList && <div>No Channels</div>}
+            <div id="addchannelButton" className="addChannel" onClick={showaddChannel}>
+              <AddIcon></AddIcon><span>Add channels</span>
+
+              
             </div>
           </div>
         </div>

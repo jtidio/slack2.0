@@ -15,6 +15,7 @@ function DashboardUI() {
 
   return (
     <div className="main">
+
       <SearchBar></SearchBar>
       <div className="user">
         <Account></Account>
@@ -22,6 +23,7 @@ function DashboardUI() {
         <Chat chatTitle={chatTitle}></Chat>
       </div>
       <AddChannel></AddChannel>
+
     </div>
   )
 };

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const CreateChannelService = {
     // Object method for getting users
-    createChannels: async function(user) {
+    createChannel: async function(user) {
         try{
             const channelDetails={
                 //need to set up where to get channel name value
