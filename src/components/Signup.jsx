@@ -57,30 +57,32 @@ function Signup() {
     }
 }
 
-  return (
-    <form onSubmit={handleSignup}>
-      <h1>Sign Up</h1>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        onChange={(event) => setEmail(event.target.value)}
-                    >
-                    </input>
-                    <label>Password:</label>
-                    <input
-                        type="text"
-                        onChange={(event) => setPassword(event.target.value)}
-                    >
-                    </input>
-                    <label>Re-Type Password:</label>
-                    <input
-                        type="text"
-                        onChange={(event) => setConfirmPassword(event.target.value)}
-                    >
-                    </input>
-                    <button type="submit">Sign Up</button>
-    </form>
-  )
+return (
+	<div className='signupformContainer'>
+		<form onSubmit={handleSignup}>
+			<h1>Sign Up</h1>
+				<label>Email:</label>
+				<input
+						type="email"
+						onChange={(event) => setEmail(event.target.value)}
+				>
+				</input>
+				<label>Password:</label>
+				<input
+						type="text"
+						onChange={(event) => setPassword(event.target.value)}
+				>
+				</input>
+				<label>Re-Type Password:</label>
+				<input
+						type="text"
+						onChange={(event) => setConfirmPassword(event.target.value)}
+				>
+				</input>
+				<button type="submit">Sign Up</button>
+		</form>
+	</div>
+)
 };
 
 export default Signup;

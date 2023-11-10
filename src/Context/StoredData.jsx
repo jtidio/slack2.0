@@ -6,8 +6,8 @@ const DataContext = createContext();
 
 const StoredData = ({children}) => {
 
-// Login
-const [ isLoggedIn, setisLoggedIn ] = useState(false);
+    // Login
+    const [ isLoggedIn, setisLoggedIn ] = useState(false);
 
     const handleLogin = (user) => {
         setisLoggedIn(true);
@@ -20,38 +20,41 @@ const [ isLoggedIn, setisLoggedIn ] = useState(false);
         setUserHeaders('');
         // setMessages([]);
     }
-//User Login
+    //User Login
 
- const [ user, setUser ] = useState('');
- const [ userHeaders, setUserHeaders ] = useState('')
+    const [ user, setUser ] = useState('');
+    const [ userHeaders, setUserHeaders ] = useState('')
 
- const setLoginUser = (user) => {
-     setUser(user);
- } 
+    const setLoginUser = (user) => {
+        setUser(user);
+    } 
 
- const handleHeaders = (header) => {
-     const updatedHeader = {
-         'access-token': header['access-token'],
-         uid: header.uid,
-         expiry: header.expiry,
-         client: header.client,
-     }
-     setUserHeaders(updatedHeader)
- }
+    const handleHeaders = (header) => {
+        const updatedHeader = {
+            'access-token': header['access-token'],
+            uid: header.uid,
+            expiry: header.expiry,
+            client: header.client,
+        }
+        setUserHeaders(updatedHeader)
+    }
 
 
-return (
-    <DataContext.Provider value={
-        {isLoggedIn, handleLogin, handleLogout, 
-        handleHeaders, setLoginUser,userHeaders, user}
-        }>
-        {children}
-    </DataContext.Provider>
-)
+    return (
+        <DataContext.Provider value={
+            {isLoggedIn, handleLogin, handleLogout, 
+            handleHeaders, setLoginUser,userHeaders, user}
+            }>
+            {children}
+        </DataContext.Provider>
+    )
 };
 
 export const useData = () => {
-return useContext(DataContext);
+    const data = useContext(DataContext)
+
+    // return data || { handleHeaders: ()=> {}, handleLogin: ()=> {}}
+    return data
 }
 
 export default StoredData

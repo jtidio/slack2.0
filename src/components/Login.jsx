@@ -7,20 +7,27 @@ import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 import { useData } from '../Context/StoredData';
+import { useNavigate } from 'react-router-dom';
+import StoredData from '../Context/StoredData';
 
 function Login() {
   const {handleHeaders, handleLogin} = useData();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-//   const [user, setUser] = useState(
-//     () => JSON.parse(localStorage.getItem("user") || null)
-// );
+  const navigate = useNavigate();
+  const [user, setUser] = useState(
+    () => JSON.parse(localStorage.getItem("user") || null)
+  );
 
-// useEffect(()=>{
-//   if(user){
-//       localStorage.setItem("user", JSON.stringify(user));
-//   }
-// }, [user])
+  useEffect(()=>{
+    console.log(1, user);
+    
+    if(user){
+      console.log(2, user);
+      localStorage.setItem("user", JSON.stringify(user));
+      navigate('/dashboard');
+    }
+  }, [user])
 
   async function handleLoginForm(event){
     event.preventDefault();
@@ -30,41 +37,40 @@ function Login() {
         return alert("Invalid credentials (email or password)");
     }
     try {
-        const loginCredentials ={
+        const loginCredentials = {
             email,
             password
         }
         const response = await axios.post(`${API_URL}/auth/sign_in`, loginCredentials);
-        // const {data, headers} = response;
+        const {data, headers} = response;
+        if (data && headers){
+          const accessToken = headers["access-token"];
+          const expiry = headers["expiry"];
+          const client = headers["client"];
+          const uid = headers["uid"];
+          setUser({
+              accessToken,
+              expiry,
+              client,
+              uid,
+              id: data.data.id
+          })
+        }
         handleLogin(response.data);
         handleHeaders(response.headers);
         console.log("success")
 
-        // if (data && headers){
-        //     const accessToken = headers["access-token"];
-        //     const expiry = headers["expiry"];
-        //     const client = headers["client"];
-        //     const uid = headers["uid"];
-        //     setUser({
-        //         accessToken,
-        //         expiry,
-        //         client,
-        //         uid,
-        //         id: data.data.id
-        //     })
-        // }
-
     } catch (error){
         if(error.response.data.errors){
-            return alert("Invalid credentials this is the other");
+            return alert("Invalid credentials. Please enter an existing account");
         }
 
     }
 }
 
-// function handleLogin(){
-
-// }
+  function handleSignup() {
+    navigate('/signup');
+  }
 
 return (
   <div className='loginformContainer'>
@@ -94,7 +100,7 @@ return (
         <button type="submit">Login</button>
       </div>
     </form>
-    <div className='createAccount'>
+    <div onClick={handleSignup} className='createAccount'>
       <span>Create new account</span><TrendingFlatIcon></TrendingFlatIcon>
     </div>
   </div>

@@ -9,11 +9,11 @@ function AddChannel({}) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    async function newChannel(){
-      const newChannel = await CreateChannelService.createChannels(user);
-      setChannelList(newChannel);
-    }
-    newChannel();
+    // async function newChannel(){
+    //   const newChannel = await CreateChannelService.createChannels(user);
+    //   setChannelList(newChannel);
+    // }
+    // newChannel();
   }
 
   function closeModal() {
