@@ -1,0 +1,13 @@
+.profileContainer {
+  position: absolute;
+  left: 40%;
+  top: 35%;
+  width: 20%;
+  height: 30%;
+  background: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 10px;
+}
