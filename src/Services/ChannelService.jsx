@@ -18,10 +18,10 @@ const ChannelService = {
             
             console.log(user.uid)
             const channels = response.data.data;
-            return channels.filter((channel) => channel.id >= 5000);
+            return channels.filter((channel) => channel.id >= 4000);
             
         } catch(error){
-            if(error.response.data.errors){
+            if(user.errors){
                 return alert("Cannot get channels");
             }
         }

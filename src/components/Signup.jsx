@@ -6,14 +6,16 @@ import "./Signup.css";
 import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
 import { Key } from '@mui/icons-material';
+import {useNavigate} from 'react-router-dom';
 
 function Signup() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [password_confirmation, setConfirmPassword] = useState();
-  const [user, setUser] = useState(
-    () => JSON.parse(localStorage.getItem("user") || null)
-);
+  const navigate = useNavigate();
+//   const [user, setUser] = useState(
+//     () => JSON.parse(localStorage.getItem("user") || null)
+// );
 
 // useEffect(()=>{
 //   if(user){
@@ -35,23 +37,25 @@ function Signup() {
             password_confirmation
         }
         const response = await axios.post(`${API_URL}/auth/`, signupCredentials);
-        const {data, headers} = response;
+        // const {data, headers} = response;
 
-        if (data && headers){
-            const accessToken = headers["access-token"];
-            const expiry = headers["expiry"];
-            const client = headers["client"];
-            const uid = headers["uid"];
-            setUser({
-                accessToken,
-                expiry,
-                client,
-                uid,
-                id: data.data.id
-            })
+        // if (data && headers){
+        //     const accessToken = headers["access-token"];
+        //     const expiry = headers["expiry"];
+        //     const client = headers["client"];
+        //     const uid = headers["uid"];
+        //     setUser({
+        //         accessToken,
+        //         expiry,
+        //         client,
+        //         uid,
+        //         id: data.data.id
+        //     })
 
-            console.log("success");
-        }
+            
+        // }
+        console.log("success")
+            navigate("/")
 
     } catch (error){
         if(error.response.data.errors){
