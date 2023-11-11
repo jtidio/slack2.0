@@ -46,9 +46,7 @@ function SideBar({ setChatTitle }) {
   };
   //FUNCTIONAL CODE
   const [channelList, setChannelList] = useState([]);
-
   const {userHeaders} = useData();
-
 
   useEffect(() => {
       // Apply getUsers function from UserService here
@@ -67,15 +65,6 @@ function SideBar({ setChatTitle }) {
             <ArrowRightIcon></ArrowRightIcon><span>Channels</span>
           </div>
           <div id="showChannel" className="channelContent">
-            {/* <div className="channelName" onClick={() => showChannel("Avion")}>
-              <TagIcon></TagIcon><span>Avion</span>
-            </div>
-            <div className="channelName" onClick={() => showChannel("School")}>
-              <TagIcon></TagIcon><span>School</span>
-
-            </div>
-            </div> */}
-
             {
                 channelList && 
                 channelList.map((channel) => {
@@ -87,10 +76,6 @@ function SideBar({ setChatTitle }) {
                     )
                 })
             }
-            <div id="addchannelButton" className="addChannel" onClick={showaddChannel}>
-              <AddIcon></AddIcon><span>Add channels</span>
-
-              
             {!channelList && <div>No Channels</div>}
             <div id="addchannelButton" className="addChannel" onClick={showaddChannel}>
               <AddIcon></AddIcon><span>Add channels</span>
