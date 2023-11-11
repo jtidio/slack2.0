@@ -1,5 +1,5 @@
 import "./Chat.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
@@ -15,9 +15,59 @@ import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import MicIcon from '@mui/icons-material/Mic';
-
+import SendMessageService from "../Services/SendMessageService";
+import RetrieveMessageService from "../Services/RetrieveMessageService";
+import { useData } from '../Context/StoredData';
 
 function Chat({ chatTitle }) {
+	const [messageList, setMessageList] = useState([]);
+	const [oldMessageList, setOldMessageList] = useState([]);
+	const [message, setMessage] = useState("");
+	const {userHeaders, user, isMsgsLoaded, setIsMsgsLoaded} = useData();
+	const [value, setValue] = useState("");
+
+
+	function handleSendMessage(event) {
+		event.preventDefault();
+		setMessage("");
+		setIsMsgsLoaded(false)
+		const msgInfo = {
+		  id: 4005,
+		  body: message,
+		  access: userHeaders['access-token'],
+		  uid: userHeaders.uid,
+		  expiry: userHeaders.expiry,
+		  client: userHeaders.client
+		}
+	
+		async function newMessages(){
+		  const newMsgs = await SendMessageService.sendMessage(msgInfo);
+		  setMessageList(newMsgs);
+		}
+		newMessages();
+		
+		console.log("Sent Message!")
+	  }
+
+	  const oldMsgInfo = {
+		id: 4005,
+		access: userHeaders['access-token'],
+		uid: userHeaders.uid,
+		expiry: userHeaders.expiry,
+		client: userHeaders.client
+	  }
+	  useEffect(() => {
+		// Apply getUsers function from UserService here
+		async function fetchMessages(){
+			const oldMessages = await RetrieveMessageService.getMessages(oldMsgInfo);
+			setOldMessageList(oldMessages);
+		}
+		if(!isMsgsLoaded){
+		fetchMessages();
+		setIsMsgsLoaded(true)
+		console.log("Successful retrieval")
+		}
+	})
 
 return (
   <div className="Chat">
@@ -31,6 +81,18 @@ return (
 			<div className="chatDisplay">
 				<span>Chat Area</span>
 				{/* <span>{user}</span> */}
+				{
+                oldMessageList && 
+                oldMessageList.map((msgs) => {
+                    return (
+					<div key={msgs.id}>
+						<div>{msgs.sender.uid}</div>
+						<span>{msgs.body}</span>
+                      </div>
+                    )
+                })
+            }
+            {!oldMessageList && <div>No Messages Yet!</div>}
 			</div>
 			<div className="chatInput">
 				<div className="formattingIcons">
@@ -47,7 +109,10 @@ return (
 					<TerminalIcon></TerminalIcon>
 				</div>
 				<div className="chattextArea">
-					<textarea placeholder="Text here"></textarea>
+					<form onSubmit={handleSendMessage} className='addchannelForm'>
+					<textarea value = {message} placeholder="Text here" onChange={(event) => setMessage(event.target.value)}></textarea>
+					<button type='submit'>Send</button>
+					</form>
 				</div>
 				<div className="chatFunctions">
 					<AddCircleIcon></AddCircleIcon>

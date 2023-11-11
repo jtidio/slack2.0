@@ -38,12 +38,18 @@ const StoredData = ({children}) => {
         }
         setUserHeaders(updatedHeader)
     }
+    //Channels
+    const [ isChannelsLoaded, setIsChannelsLoaded ] = useState(false);
+    //
+    const [ isMsgsLoaded, setIsMsgsLoaded ] = useState(false);
 
-
+    
     return (
         <DataContext.Provider value={
             {isLoggedIn, handleLogin, handleLogout, 
-            handleHeaders, setLoginUser,userHeaders, user}
+            handleHeaders, setLoginUser,userHeaders, user,
+            isChannelsLoaded, setIsChannelsLoaded,
+            isMsgsLoaded, setIsMsgsLoaded }
             }>
             {children}
         </DataContext.Provider>
