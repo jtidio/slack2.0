@@ -2,30 +2,27 @@ import { API_URL } from '../constants/Constants';
 import axios from 'axios';
 
 //Havent created a connector to js to work
-const SendMessageService = {
+const RetrieveMessageService = {
     // Object method for getting users
-    sendMessage: async function(user) {
+    getMessages: async function(user) {
         try{
-            const messageDetails={
-                //need to set up where to get channel name value
-                receiver_id: user.id,
-                receiver_class: "user"
-            }
-            const response = await axios.get(`${API_URL}/messages?receiver_id=${user.id}&receiver_class=User`,messageDetails,
+            
+            const response = await axios.get(`${API_URL}/messages?receiver_id=${user.id}&receiver_class=User`,
             
             {
                 headers:{
-                    "access-token": user.accessToken,
+                    "access-token": user.access,
                     client: user.client,
                     expiry: user.expiry,
                     uid: user.uid
                 }
             })
             
-            const newMessage = response.data.data;
+            const chatHistory = response.data.data;
+            return chatHistory;
             
         } catch(error){
-            if(error.response.data.errors){
+            if(user.errors){
                 return alert("No info acquired");
             }
         }
@@ -33,4 +30,4 @@ const SendMessageService = {
 
 }
 
-export default SendMessageService;
+export default RetrieveMessageService;

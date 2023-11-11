@@ -46,7 +46,7 @@ function SideBar({ setChatTitle }) {
   };
   //FUNCTIONAL CODE
   const [channelList, setChannelList] = useState([]);
-  const {userHeaders} = useData();
+  const {userHeaders, isChannelsLoaded, setIsChannelsLoaded } = useData();
 
   useEffect(() => {
       // Apply getUsers function from UserService here
@@ -54,7 +54,12 @@ function SideBar({ setChatTitle }) {
           const channels = await ChannelService.getChannels(userHeaders);
           setChannelList(channels);
       }
-      fetchChannels();
+      if(!isChannelsLoaded){
+        fetchChannels();
+        setIsChannelsLoaded(true)
+        console.log("loaded channels");
+      }
+      // fetchChannels();
   })
 
   return (

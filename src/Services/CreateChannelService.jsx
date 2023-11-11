@@ -21,7 +21,8 @@ const CreateChannelService = {
                 }
             })
             
-            const newchannel = response.data.data;
+            // const newchannel = response.data.data;
+            // console.log("this service is working")
             
         } catch(error){
             if(user.errors){

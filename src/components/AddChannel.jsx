@@ -7,12 +7,13 @@ import { useData } from '../Context/StoredData';
 
 
 function AddChannel({}) {
-  const {userHeaders, user} = useData();
+  const {userHeaders, user, setIsChannelsLoaded} = useData();
   const [channelList, setChannelList] = useState([]);
   const [channelName, setChannelName] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
+    setIsChannelsLoaded(false);
 
     const channelInfo = {
       name: channelName,
@@ -22,12 +23,14 @@ function AddChannel({}) {
       expiry: userHeaders.expiry,
       client: userHeaders.client
     }
-
+    console.log("this is running at this point 1")
     async function newChannel(){
       const newChannel = await CreateChannelService.createChannel(channelInfo);
-      setChannelList(newChannel);
+      // setChannelList(newChannel);
     }
     newChannel();
+    console.log("this is running at this point 2")
+    document.getElementById("addchannelModal").style.display = "none";
   }
 
   function closeModal() {
